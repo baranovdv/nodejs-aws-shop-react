@@ -36,3 +36,10 @@ Runs tests in console, in browser or with coverage.
 ### `lint`, `prettier`
 
 Runs linting and formatting for all files in `src` folder.
+
+### `deploy`
+
+run to deploy to s3 bucket
+
+S3 Bucket URL: http://aws-dev-course-shop-cdk-2.s3-website.eu-central-1.amazonaws.com
+CloudFront URL: https://d3j641yronc0nm.cloudfront.net
