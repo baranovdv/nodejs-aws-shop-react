@@ -5,12 +5,12 @@ import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { Construct } from "constructs";
 
-export class CdKexampleStack extends cdk.Stack {
+export class CDKt2Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const myS3bucket = new s3.Bucket(this, "MyS3BucketonSDK", {
-      bucketName: "aws-dev-course-shop-cdk",
+    const myS3bucket = new s3.Bucket(this, "MyS3BucketonSDK2", {
+      bucketName: "aws-dev-course-shop-cdk-2",
       versioned: true,
       publicReadAccess: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
