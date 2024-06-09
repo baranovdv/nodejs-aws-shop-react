@@ -14,6 +14,7 @@
     "deploy": "cd AWS-CDK && cdk deploy"
   },
   "dependencies": {
+    "@aws-cdk/aws-s3-deployment": "^1.204.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
