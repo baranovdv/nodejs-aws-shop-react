@@ -15,6 +15,9 @@ export class CDKt2Stack extends cdk.Stack {
       publicReadAccess: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
       websiteIndexDocument: "index.html",
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+      accessControl: s3.BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
 
     const distribution = new cloudfront.Distribution(this, "MyDistribution", {

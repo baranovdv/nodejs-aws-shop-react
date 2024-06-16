@@ -11,7 +11,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint --ignore-path .gitignore --fix src",
     "prettier": "prettier src --write",
-    "deploy": "cd AWS-CDK && cdk deploy"
+    "deploy": "cd AWS-CDK && cdk deploy",
+    "destroy": "cd AWS-CDK && cdk destroy"
   },
   "dependencies": {
     "@aws-cdk/aws-s3-deployment": "^1.204.0",
