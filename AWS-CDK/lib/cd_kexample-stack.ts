@@ -20,9 +20,29 @@ export class CDKt2Stack extends cdk.Stack {
       accessControl: s3.BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
 
-    const distribution = new cloudfront.Distribution(this, "MyDistribution", {
-      defaultBehavior: { origin: new origins.S3Origin(myS3bucket) },
-    });
+    // const distribution = new cloudfront.Distribution(this, "MyDistribution", {
+    //   defaultBehavior: { origin: new origins.S3Origin(myS3bucket) },
+    // });
+    const originAccessIdentity = new cloudfront.OriginAccessIdentity(
+      this,
+      "CloudfrontOAI"
+    );
+
+    const distribution = new cloudfront.CloudFrontWebDistribution(
+      this,
+      "MyDistribution",
+      {
+        originConfigs: [
+          {
+            s3OriginSource: {
+              s3BucketSource: myS3bucket,
+              originAccessIdentity: originAccessIdentity,
+            },
+            behaviors: [{ isDefaultBehavior: true }],
+          },
+        ],
+      }
+    );
 
     new s3deploy.BucketDeployment(this, "DeployWebsite", {
       sources: [s3deploy.Source.asset("../dist")],
