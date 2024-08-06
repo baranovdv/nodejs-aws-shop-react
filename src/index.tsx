@@ -7,10 +7,41 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
+import axios from "axios";
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          console.log("Unauthorized error");
+          alert("401 - Unauthorized");
+          break;
+        case 403:
+          console.log("Forbidden error");
+          alert("403 - Access Denied error");
+          break;
+        default:
+          console.log("Error", error.message);
+      }
+    } else if (error.request) {
+      console.log("No response was received");
+    } else {
+      console.log("Error setting up request");
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: Infinity,
+    },
   },
 });
 
